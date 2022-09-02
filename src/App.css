@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*************************
+    BOOKS component
+*************************/
+.books {
+  padding: 50px 100px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*************************
+    BOOK component
+*************************/
+.book {
+  max-width: 400px;
+  grid-column: span 4;
+  position: relative;
+  text-decoration: none;
+  color: #000;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.book:hover {
+  transform: scale(1.05);
+  transition: all 300ms ease-in-out;
+}
+
+.heroWrapper {
+  position: relative;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.infoWrapper {
+
+}
+
+.topInfo {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topInfo > p {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topInfo > p > span {
+  padding: 3px 5px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.bottomInfo > p {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.author {
+  font-size: 1em;
 }
