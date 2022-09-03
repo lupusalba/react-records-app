@@ -1,27 +1,83 @@
 
 
 const BookDetails = (book) => {
-  console.log(book.book)
-  return (
-    <div className="BookDetails">
-      <div className="heroWrapper">
-        <img className="heroImage" alt="img" src={book.book.heroImage} />
-        <div className="topInfo">
-          <p>
-            <span className="status">{book.book.status}</span>
-            <span className="lastUpdated">{book.book.lastUpdated}</span>
-          </p>
-        </div>
-      </div>
-      <div className="infoWrapper">
 
-        <div className="bottomInfo">
-          <p>
-            <span className="title">{book.book.title}</span>
-            <span className="author">{book.book.author}</span>
+  const tags = book.book.tags
+  const categories = book.book.category
+  const links = book.book.links
+  const altNames = book.book.alternativeNames
+
+  const reformedTags = tags.join(', ')
+  const reformedCategories = categories.join(', ')
+  const reformedLinks = links.join(', ')
+  const reformedAltNames = altNames.join(', ')
+
+  return (
+    <div className="bookDetailsWrapper">
+
+      <div className="bookDetailsHeading">
+        <p className="bookDetailsTitle">{book.book.title}</p>
+        <p className="bookDetailsStatus lighter">{book.book.status}</p>
+      </div>
+
+      <div className="largeHeroImageWrapper">
+        <img className="largeHeroImage" src={book.book.heroImage} />
+      </div>
+      <div className="bookDetailsData">
+        <div className="bookDetailsDescription">
+          <span className="bigBold">Description</span>
+          <p>{book.book.description}</p>
+        </div>
+
+        <div className="bookDetailsPartsContainer">
+          <div className="bookDetailsParts">
+            <span className="bold">
+              {book.book.parts != 0 ? "Parts / Volumes" : "Chapters"}
+            </span>
+            <p>{book.book.parts === 0 ? book.book.chapters : book.book.parts}</p>
+          </div>
+          <p className="bookDetailsLastUpdate">
+            <span className="bold">Last Update</span>
+            <p>{book.book.lastUpdate}</p>
           </p>
         </div>
+
+        <div id="bookAuthor">
+          <span className="bold">Author</span>
+          <p>{book.book.author}</p>
+        </div>
+
+        <div className="myComment">
+          <span className="bold">My Components</span>
+          <p>{book.book.myComments}</p>
+        </div>
+
+        <div className="alternativeNames">
+          <span className="bold">alternativeNames</span>
+          <p>{reformedAltNames}</p>
+        </div>
+
+        <div className="tags">
+          <span className="bold">tags</span>
+          <p>{reformedTags}</p>
+        </div>
+
+        <div className="category">
+          <span className="bold">category</span>
+          <p>{reformedCategories}</p>
+        </div>
+
+        <div className="links">
+          <span className="bold">links</span>
+          <p>{reformedLinks}</p>
+        </div>
+
+
+
+
+
       </div>
+
     </div>
   )
 }

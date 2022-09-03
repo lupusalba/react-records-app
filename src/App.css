@@ -83,3 +83,63 @@
 .author {
   font-size: 1em;
 }
+
+
+/*************************
+    BookDetails
+*************************/
+.bookDetailsWrapper {
+  padding: 50px 100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 50px;
+}
+
+.bookDetailsHeading {
+  grid-column: span 12;
+}
+
+.largeHeroImageWrapper {
+  grid-column: span 5;
+}
+
+.bookDetailsData {
+  grid-column: span 7;
+}
+
+.bookDetailsTitle {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.bookDetailsTitle {
+
+}
+
+.lighter {
+  opacity: 0.6;
+}
+
+.bigBold {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bookDetails {
+  display: flex
+}
+
+.largeHeroImageWrapper {
+
+}
+
+.largeHeroImage {
+  height: auto;
+  width: 100%;
+}
