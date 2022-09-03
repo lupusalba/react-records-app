@@ -60,3 +60,37 @@ app.get('/books',  async(req, res) => {
     })
   }
 })
+
+app.patch('/update-book/:id', async(req, res) => {
+  const updatedBook = await ModelBook.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  })
+  try {
+    res.status(200).json({
+      status: "success",
+      data: {
+        updatedBook
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+})
+
+
+app.delete('/delete-book/:id', async(req, res) => {
+  await ModelBook.findByIdAndDelete(req.params.id)
+
+  try{
+    res.status(204).json({
+      status: "success",
+      data: {}
+    })
+  } catch(err) {
+    res.status(500).json({
+      status: "failed",
+      message: err
+    })
+  }
+})
