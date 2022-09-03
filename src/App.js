@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Axios from 'axios'
 import Home from './Pages/Home'
 import Error from './Pages/ErrorNotFound'
 import BookPage from './Pages/BookPage'
@@ -8,6 +10,18 @@ import DeleteBook from './Pages/DeleteBook'
 import './App.css';
 
 function App() {
+
+
+  // const [listOfBooks, setListOfBooks] = useState([])
+  
+  // useEffect(() => {
+  //   Axios.get("http://localhost:3000/").then((response) => {
+  //     setListOfBooks([response.data])
+  //   })
+  //   console.log("from app.js")
+  //   console.log(listOfBooks)
+  // }, [])
+
   return (
     <div className="App">
 {/*       
@@ -16,6 +30,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/new-book" element={<Home />} />
+          <Route exact path="/books" element={<Home />} />
           <Route exact path="/books/:_id" element={<BookPage />} />
           {/* <Route exact path="/books" element={<BookPage />} /> */}
           <Route exact path="/edit:_id" element={<EditBook />} />
