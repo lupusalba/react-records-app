@@ -1,11 +1,29 @@
-import Book from '../Components/Book'
+import { useParams } from 'react-router'
+import BookDetails from '../Components/BookDetails'
+import data from '../data'
 
 const BookPage = () => {
-  console.log()
+
+  const { _id } = useParams();
+
+const targetBook = data.map( b => {
+  if(b._id == _id) {
+    return <BookDetails book={b}/>
+  }
+})
+
+//console.log(_id)
+
+
+
   return (
-    <div>
-     
-    <h1>Ovo je knjiga</h1>
+    <div className="BookPage">
+
+      {targetBook}
+      
+
+
+
     </div>
   )
 }

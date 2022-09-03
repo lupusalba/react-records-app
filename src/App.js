@@ -15,15 +15,15 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/books/:_id" element={<BookPage />} />
-          {/* <Route path="/books" element={<BookPage />} /> */}
-          <Route path="/edit:_id" element={<EditBook />} />
-          <Route path="/edit" element={<EditBook />} />
-          <Route path="/new-book" element={<NewBook />} />
-          <Route path="/delete-book:_id" element={<DeleteBook />} />
-          <Route path="/delete-book" element={<DeleteBook />} />
-          <Route path="/*" element={<Error />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/books/:_id" element={<BookPage />} />
+          {/* <Route exact path="/books" element={<BookPage />} /> */}
+          <Route exact path="/edit:_id" element={<EditBook />} />
+          {/* <Route exact path="/edit" element={<EditBook />} /> */}
+          <Route exact path="/new-book" element={<NewBook />} />
+          <Route exact path="/delete-book:_id" element={<DeleteBook />} />
+          {/* <Route exact path="/delete-book" element={<DeleteBook />} /> */}
+          <Route exact path="/*" element={<Error />} />
         </Routes>
       </Router>  
 
