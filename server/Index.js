@@ -61,6 +61,22 @@ app.get('/books',  async(req, res) => {
   }
 })
 
+app.get('/book/:_id',  async(req, res) => {
+  const oneBook = await ModelBook.findById(req.params._id)
+  try {
+    res.status(200).json({
+      status: "success",
+      data: {oneBook}
+    })
+  } catch(err) {
+    res.status(500).json({
+      status: "failed",
+      message: err
+    })
+  }
+})
+
+
 app.patch('/update-book/:id', async(req, res) => {
   const updatedBook = await ModelBook.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
