@@ -32,12 +32,14 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/new-book" element={<NewBook />} />
           <Route exact path="/books" element={<Home />} />
-          <Route exact path="/books/:_id" element={<BookPage />} />
-          {/* <Route exact path="/books" element={<BookPage />} /> */}
-          <Route exact path="/edit:_id" element={<EditBook />} />
-          {/* <Route exact path="/edit" element={<EditBook />} /> */}
+          <Route exact path="/book/:_id" element={<BookPage />} />
+
+
           
-          <Route exact path="/delete-book/:_id" element={<DeleteBook />} />
+          {/* <Route exact path="/books" element={<BookPage />} /> */}
+          {/* <Route exact path="/edit:_id" element={<EditBook />} /> */}
+          {/* <Route exact path="/edit" element={<EditBook />} /> */}
+          {/* <Route exact path="/delete-book/:_id" element={<DeleteBook />} /> */}
           {/* <Route exact path="/delete-book" element={<DeleteBook />} /> */}
           <Route exact path="/*" element={<Error />} />
         </Routes>

@@ -7,10 +7,11 @@ const BookDetails = (book) => {
   const links = book.book.links
   const altNames = book.book.alternativeNames
 
-  const reformedTags = tags.join(', ')
-  const reformedCategories = categories.join(', ')
-  const reformedLinks = links.join(', ')
-  const reformedAltNames = altNames.join(', ')
+  // const reformedTags = tags.join(', ')
+  // const reformedCategories = categories.join(', ')
+  // const reformedLinks = links.join(', ')
+  // const reformedAltNames = altNames.join(', ')
+
 
   return (
     <div className="bookDetailsWrapper">
@@ -36,10 +37,10 @@ const BookDetails = (book) => {
             </span>
             <p>{book.book.parts === 0 ? book.book.chapters : book.book.parts}</p>
           </div>
-          <p className="bookDetailsLastUpdate">
+          <div className="bookDetailsLastUpdate">
             <span className="bold">Last Update</span>
             <p>{book.book.lastUpdate}</p>
-          </p>
+          </div>
         </div>
 
         <div id="bookAuthor">
@@ -54,22 +55,22 @@ const BookDetails = (book) => {
 
         <div className="alternativeNames">
           <span className="bold">alternativeNames</span>
-          <p>{reformedAltNames}</p>
+          <p>{altNames}</p>
         </div>
 
         <div className="tags">
           <span className="bold">tags</span>
-          <p>{reformedTags}</p>
+          <p>{tags}</p>
         </div>
 
         <div className="category">
           <span className="bold">category</span>
-          <p>{reformedCategories}</p>
+          <p>{categories}</p>
         </div>
 
         <div className="links">
           <span className="bold">links</span>
-          <p>{reformedLinks}</p>
+          <p>{links}</p>
         </div>
 
 

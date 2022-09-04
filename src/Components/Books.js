@@ -19,13 +19,15 @@ import Axios from 'axios'
   
   useEffect(() => {
     Axios.get("http://localhost:8080/books").then((res) => {
-      //console.log(res.data.data.allBooks)
       setListOfBooks(res.data.data.allBooks)
-      console.log(listOfBooks)
     })
   }, [])
 
 
+  const deleteBook = (_id) => {
+    Axios.delete(`http://localhost:8080/delete-book/${_id}`)
+    console.log('deleted ' + _id)
+  }
 
 
   return (
@@ -35,7 +37,7 @@ import Axios from 'axios'
         
         listOfBooks.map((book) => {
           return (
-            <Book book={book} key={book._id} />
+            <Book book={book}  />
           )
         })
       }

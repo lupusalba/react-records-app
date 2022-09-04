@@ -1,25 +1,30 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import BookDetails from '../Components/BookDetails'
-import data from '../data'
+import Axios from 'axios'
+
 
 const BookPage = () => {
 
+  const [oneBook, setOneBook] = useState({})
+
   const { _id } = useParams();
 
-const targetBook = data.map( b => {
-  if(b._id == _id) {
-    return <BookDetails book={b}/>
-  }
-})
+  useEffect(() => {
+    Axios.get(`http://localhost:8080/book/${_id}`).then((res) => {
+      setOneBook(res.data.data.oneBook)
+      
+    })
+  }, [])
 
-//console.log(_id)
+
 
 
 
   return (
     <div className="BookPage">
 
-      {targetBook}
+      <BookDetails book={oneBook} />
       
 
 

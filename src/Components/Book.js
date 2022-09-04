@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 const Book = (book) => {
   return (
-    <Link to={`/books/${book.book._id}`} className="book">
+    <Link to={`/book/${book.book._id}`} className="book">
 
       <div className="heroWrapper">
         <img className="heroImage" alt="img" src={book.book.heroImage} />
