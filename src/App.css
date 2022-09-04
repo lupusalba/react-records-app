@@ -143,3 +143,34 @@
   height: auto;
   width: 100%;
 }
+
+
+/*************************
+    NewBook component
+*************************/
+.newBook {
+  width: 80%;
+  margin: 100px auto;
+}
+
+form {
+
+}
+
+form > input  {
+  height: 40px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 10px;
+}
+
+form > button {
+  display: block;
+}

@@ -14,27 +14,32 @@ import Axios from 'axios'
   //   )
 
 
-
   const Books = (book) => {
-//   const [listOfBooks, setListOfBooks] = useState([])
+  const [listOfBooks, setListOfBooks] = useState([])
   
-//   useEffect(() => {
-//     Axios.get("http://localhost:3001/").then((res) => {
-//       console.log(res)
-//     })
-//   }, [])
+  useEffect(() => {
+    Axios.get("http://localhost:8080/books").then((res) => {
+      //console.log(res.data.data.allBooks)
+      setListOfBooks(res.data.data.allBooks)
+      console.log(listOfBooks)
+    })
+  }, [])
 
 
-  console.log("from books.js")
-  console.log(book)
+
 
   return (
     <div className="books">
-      {/* {listOfBooks.map((b) => {
-          <Book book={b} />
+
+      {
+        
+        listOfBooks.map((book) => {
+          return (
+            <Book book={book} key={book._id} />
+          )
         })
-      } */}
-      books
+      }
+      
     </div>
   )
 }
