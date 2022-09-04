@@ -46,7 +46,7 @@ const BookScheme = new mongoose.Schema({
     required: false
   },
   chapters : {
-    type: 'String',
+    type: 'Number',
     required: false
   },
   links : {
