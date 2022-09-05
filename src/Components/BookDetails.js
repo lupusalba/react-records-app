@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom'
 
 const BookDetails = (book) => {
 
@@ -20,6 +20,10 @@ const BookDetails = (book) => {
         <p className="bookDetailsTitle">{book.book.title}</p>
         <p className="bookDetailsStatus lighter">{book.book.status}</p>
       </div>
+      <div className="updateDelete">
+        <Link to={`/update-book/${book.book._id}`} className="linkButton linkUpdate">Update</Link>
+        <Link to={`/delete-book/${book.book._id}`} className="linkButton linkDelete">Delete</Link>
+      </div>
 
       <div className="largeHeroImageWrapper">
         <img className="largeHeroImage" src={book.book.heroImage} />
@@ -33,9 +37,9 @@ const BookDetails = (book) => {
         <div className="bookDetailsPartsContainer">
           <div className="bookDetailsParts">
             <span className="bold">
-              {book.book.parts != 0 ? "Parts / Volumes" : "Chapters"}
+              {book.book.volumes === 0 ? "Chapters" : "Parts / Volumes"}
             </span>
-            <p>{book.book.parts === 0 ? book.book.chapters : book.book.parts}</p>
+            <p>{book.book.volumes === 0 ? book.book.chapters : book.book.volumes}</p>
           </div>
           <div className="bookDetailsLastUpdate">
             <span className="bold">Last Update</span>

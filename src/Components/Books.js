@@ -37,7 +37,7 @@ import Axios from 'axios'
         
         listOfBooks.map((book) => {
           return (
-            <Book book={book}  />
+            <Book book={book} key={book._id} />
           )
         })
       }

@@ -24,7 +24,7 @@ const BookPage = () => {
   return (
     <div className="BookPage">
 
-      <BookDetails book={oneBook} />
+      <BookDetails book={oneBook}/>
       
 
 
