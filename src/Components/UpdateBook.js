@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
-
-
-
 const UpdateBook = (bookID) => {
+
+  const [on, setOn] = useState(false)
 
   const [oldBook, setOldBook] = useState({
     title: "",
@@ -20,20 +19,6 @@ const UpdateBook = (bookID) => {
     links: []
   })
 
-  const [test, setTest] = useState({
-    title: "1",
-    author: "2",
-    description: "3",
-    status: "4",
-    heroImage: "5",
-    lastUpdated: "08/08/2021",
-    alternativeNames: [],
-    tags: [],
-    category: [],
-    chapters: 10,
-    volumes: 0,
-    links: []
-  })
 
   console.log(bookID.bookID)
   useEffect(() => {
@@ -42,44 +27,24 @@ const UpdateBook = (bookID) => {
     })
   }, [])
 
-  console.log(`http://localhost:8080/update-book/${bookID.bookID}`)
 
 
 
 
-  // const updateOldBook = () => {
-      console.log(oldBook)
-  //   //let id = bookID.bookID
-  //   Axios.patch(`"http://localhost:8080//update-book/${bookID}`, {
-  //     title: oldBook.title,
-  //     author: oldBook.author,
-  //     description: oldBook.description,
-  //     status: oldBook.status,
-  //     heroImage: oldBook.heroImage,
-  //     lastUpdated: oldBook.lastUpdated,
-  //     alternativeNames: oldBook.alternativeNames,
-  //     tags: oldBook.tags,
-  //     category: oldBook.category,
-  //     chapters: oldBook.chapters,
-  //     volumes: oldBook.volumes,
-  //     links: oldBook.links
 
-  //   }).then(response => {
-  //     console.log("succes")
-  //   })
-  // }
 
-    const updateOldBook = async(e) => {
+useEffect(() => {
+  const updateOldBook = async (e) => {
     let _id = bookID.bookID
-    let z = await Axios.patch(`http://localhost:8080/update-book/${_id}`, oldBook)
-    console.log(z)
+    await Axios.patch(`http://localhost:8080/update-book/${_id}`, oldBook)
   }
+},[on])
 
 
 
   const handelChange = (e) => {
     e.preventDefault()
-    const { name, value} = e.target
+    const { name, value } = e.target
 
     setOldBook(prevBook => ({
       ...prevBook,
@@ -92,19 +57,8 @@ const UpdateBook = (bookID) => {
   console.log(oldBook.author)
   return (
     <div className="newBook">
-      <div className="bookDetailsData">
-        <div className="bookDetailsDescription">
-          <span className="bigBold">Description</span>
-          <p>{oldBook.title}</p>
-        </div>
 
-        <div id="bookAuthor">
-          <span className="bold">Author</span>
-          <p>{oldBook.author}</p>
-        </div>
-      </div>
-
-      <form onSubmit={() => { updateOldBook(bookID.bookID) }}>
+      <form onSubmit={() => { setOn(!on) }}>
 
         <label htmlFor="title">Title</label>
         <input
@@ -210,7 +164,7 @@ const UpdateBook = (bookID) => {
 
 
 
-        <button onClick={() => { updateOldBook(bookID.bookID) }}>Save Changes</button>
+        <button>Save Changes</button>
       </form>
     </div>
   )
