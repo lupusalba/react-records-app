@@ -1,11 +1,14 @@
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Axios from 'axios'
 
 const BookDetails = (book) => {
 
   const deleteBook = () => {
     Axios.delete(`http://localhost:8080/delete-book/${book.book._id}`)
+    navigate(-1)
   }
+
+  const navigate = useNavigate()
 
   const tags = book.book.tags
   const categories = book.book.category
@@ -27,7 +30,7 @@ const BookDetails = (book) => {
       </div>
       <div className="updateDelete">
         <Link to={`/update-book/${book.book._id}`} className="linkButton linkUpdate">Update</Link>
-        <button onClick={() => { deleteBook() }} className="linkButton linkDelete">Delete</button>
+        <button onClick={() => { deleteBook()}} className="linkButton linkDelete">Delete</button>
       </div>
 
       <div className="largeHeroImageWrapper">

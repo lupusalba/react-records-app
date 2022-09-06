@@ -1,112 +1,127 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Axios from 'axios'
 
 
 
 const UpdateBook = (bookID) => {
 
-  const [oldBook, setOldBook] = useState({})
-  const [modifiedBook, setModifiedBook] = useState({})
+  const [oldBook, setOldBook] = useState({
+    title: "",
+    author: "",
+    description: "",
+    status: "",
+    heroImage: "",
+    lastUpdated: "",
+    alternativeNames: [],
+    tags: [],
+    category: [],
+    chapters: 0,
+    volumes: 0,
+    links: []
+  })
+
+  const [test, setTest] = useState({
+    title: "1",
+    author: "2",
+    description: "3",
+    status: "4",
+    heroImage: "5",
+    lastUpdated: "08/08/2021",
+    alternativeNames: [],
+    tags: [],
+    category: [],
+    chapters: 10,
+    volumes: 0,
+    links: []
+  })
 
   console.log(bookID.bookID)
   useEffect(() => {
     Axios.get(`http://localhost:8080/book/${bookID.bookID}`).then((res) => {
       setOldBook(res.data.data.oneBook)
-      console.log(oldBook)
     })
   }, [])
 
-
-useEffect(() => {
-  setModifiedBook(oldBook)
-  console.log(modifiedBook)
-}, [oldBook])
+  console.log(`http://localhost:8080/update-book/${bookID.bookID}`)
 
 
 
 
-  const updateOldBook = (id) => {
-    //let id = bookID.bookID
-    Axios.patch(`"http://localhost:8080/update-book`, {
-      // title: modifiedBook.title,
-      // author: modifiedBook.author,
-      // description: modifiedBook.description,
-      // status: modifiedBook.status,
-      // heroImage: modifiedBook.heroImage,
-      // lastUpdated: modifiedBook.lastUpdated,
-      // alternativeNames: modifiedBook.alternativeNames,
-      // tags: modifiedBook.tags,
-      // category: modifiedBook.category,
-      // chapters: modifiedBook.chapters,
-      // volumes: modifiedBook.volumes,
-      // links: modifiedBook.links
-      id,
-      modifiedBook
-    }).then(response => {
-      console.log("succes")
-    })
+  // const updateOldBook = () => {
+      console.log(oldBook)
+  //   //let id = bookID.bookID
+  //   Axios.patch(`"http://localhost:8080//update-book/${bookID}`, {
+  //     title: oldBook.title,
+  //     author: oldBook.author,
+  //     description: oldBook.description,
+  //     status: oldBook.status,
+  //     heroImage: oldBook.heroImage,
+  //     lastUpdated: oldBook.lastUpdated,
+  //     alternativeNames: oldBook.alternativeNames,
+  //     tags: oldBook.tags,
+  //     category: oldBook.category,
+  //     chapters: oldBook.chapters,
+  //     volumes: oldBook.volumes,
+  //     links: oldBook.links
+
+  //   }).then(response => {
+  //     console.log("succes")
+  //   })
+  // }
+
+    const updateOldBook = async(e) => {
+    let _id = bookID.bookID
+    let z = await Axios.patch(`http://localhost:8080/update-book/${_id}`, oldBook)
+    console.log(z)
   }
 
 
 
   const handelChange = (e) => {
     e.preventDefault()
-    const { name, value } = e.target
+    const { name, value} = e.target
 
-    setModifiedBook(prevBook => ({
+    setOldBook(prevBook => ({
       ...prevBook,
       [name]: value
     }))
+    console.log(oldBook)
   }
 
 
   console.log(oldBook.author)
   return (
     <div className="newBook">
-          <div className="bookDetailsData">
+      <div className="bookDetailsData">
         <div className="bookDetailsDescription">
           <span className="bigBold">Description</span>
-          <p>{modifiedBook.description}</p>
-        </div>
-
-        <div className="bookDetailsPartsContainer">
-          <div className="bookDetailsParts">
-            <span className="bold">
-              {modifiedBook.volumes === 0 ? "Chapters" : "Parts / Volumes"}
-            </span>
-            <p>{modifiedBook.volumes === 0 ? modifiedBook.chapters : modifiedBook.volumes}</p>
-          </div>
-          <div className="bookDetailsLastUpdate">
-            <span className="bold">Last Update</span>
-            <p>{modifiedBook.lastUpdate}</p>
-          </div>
+          <p>{oldBook.title}</p>
         </div>
 
         <div id="bookAuthor">
           <span className="bold">Author</span>
-          <p>{modifiedBook.author}</p>
+          <p>{oldBook.author}</p>
         </div>
-
-
-
-
-
       </div>
-      <form onSubmit={updateOldBook}>
+
+      <form onSubmit={() => { updateOldBook(bookID.bookID) }}>
 
         <label htmlFor="title">Title</label>
         <input
           type="text"
           name="title"
-          // value={modifiedBook.title}
+          placeholder={oldBook.title}
+          value={oldBook.title}
           onChange={handelChange}
         />
+        <p>{oldBook.title}</p>
 
         <label htmlFor="author">Author</label>
         <input
           type="text"
           name="author"
-          //value={modifiedBook.author}
+          placeholder={oldBook.author}
+          value={oldBook.author}
           onChange={handelChange}
         />
 
@@ -114,7 +129,8 @@ useEffect(() => {
         <input
           type="text"
           name="description"
-          //value={modifiedBook.description}
+          placeholder={oldBook.description}
+          value={oldBook.description}
           onChange={handelChange}
         />
 
@@ -122,56 +138,64 @@ useEffect(() => {
         <input
           type="text"
           name="status"
-          //value={modifiedBook.status}
+          placeholder={oldBook.status}
+          value={oldBook.status}
           onChange={handelChange}
         />
         <label htmlFor="heroImage">heroImage</label>
         <input
           type="text"
           name="heroImage"
-          //value={modifiedBook.heroImage}
+          placeholder={oldBook.heroImage}
+          value={oldBook.heroImage}
           onChange={handelChange}
         />
         <label htmlFor="lastUpdated">lastUpdated</label>
         <input
           type="date"
           name="lastUpdated"
-          //value={modifiedBook.lastUpdated}
+          placeholder={oldBook.lastUpdated}
+          value={oldBook.lastUpdated}
           onChange={handelChange}
         />
         <label htmlFor="alternativeNames">alternativeNames</label>
         <input
           type="text"
           name="alternativeNames"
-          //value={modifiedBook.alternativeNames}
+          placeholder={oldBook.alternativeNames}
+          value={oldBook.alternativeNames}
           onChange={handelChange}
         />
         <label htmlFor="tags">tags</label>
         <input
           type="text"
           name="tags"
-          //value={modifiedBook.tags}
+          placeholder={oldBook.tags}
+          value={oldBook.tags}
           onChange={handelChange}
         />
         <label htmlFor="category">category</label>
         <input
           type="text"
           name="category"
-          //value={modifiedBook.category}
+          placeholder={oldBook.category}
+          value={oldBook.category}
           onChange={handelChange}
         />
         <label htmlFor="chapters">chapters</label>
         <input
           type="text"
           name="chapters"
-          //value={modifiedBook.chapters}
+          placeholder={oldBook.chapters}
+          value={oldBook.chapters}
           onChange={handelChange}
         />
         <label htmlFor="volumes">volumes</label>
         <input
           type="text"
           name="volumes"
-          //value={modifiedBook.volumes}
+          placeholder={oldBook.volumes}
+          value={oldBook.volumes}
           onChange={handelChange}
         />
 
@@ -179,13 +203,14 @@ useEffect(() => {
         <input
           type="text"
           name="links"
-          //value={modifiedBook.links}
+          placeholder={oldBook.links}
+          value={oldBook.links}
           onChange={handelChange}
         />
 
 
 
-        <button onClick={()=> {updateOldBook(bookID.bookID)}}>Save Changes</button>
+        <button onClick={() => { updateOldBook(bookID.bookID) }}>Save Changes</button>
       </form>
     </div>
   )

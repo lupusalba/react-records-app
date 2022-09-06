@@ -24,8 +24,6 @@ function App() {
 
   return (
     <div className="App">
-{/*       
-      <Home /> */}
 
       <Router>
         <Routes>
@@ -35,12 +33,6 @@ function App() {
           <Route exact path="/book/:_id" element={<BookPage />} />
           <Route exact path="/update-book/:_id" element={<UpdateBookPage />} />
           <Route exact path="/delete-book/:_id" element={<DeleteBook />} />
-
-
-          
-          {/* <Route exact path="/books" element={<BookPage />} /> */}
-          {/* <Route exact path="/edit" element={<EditBook />} /> */}
-          {/* <Route exact path="/delete-book" element={<DeleteBook />} /> */}
           <Route exact path="/*" element={<Error />} />
         </Routes>
       </Router>  
