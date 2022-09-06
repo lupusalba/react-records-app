@@ -15,11 +15,6 @@ const BookDetails = (book) => {
   const links = book.book.links
   const altNames = book.book.alternativeNames
 
-  // const reformedTags = tags.join(', ')
-  // const reformedCategories = categories.join(', ')
-  // const reformedLinks = links.join(', ')
-  // const reformedAltNames = altNames.join(', ')
-
 
   return (
     <div className="bookDetailsWrapper">
