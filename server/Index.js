@@ -77,8 +77,8 @@ app.get('/book/:_id',  async(req, res) => {
 })
 
 
-app.patch('/update-book/:id', async(req, res) => {
-  const updatedBook = await ModelBook.findByIdAndUpdate(req.params.id, req.body, {
+app.patch('/update-book/:_id', async(req, res) => {
+  const updatedBook = await ModelBook.findByIdAndUpdate(req.params._id, req.body, {
     new: true,
     runValidators: true
   })
@@ -88,6 +88,7 @@ app.patch('/update-book/:id', async(req, res) => {
       data: {
         updatedBook
       }
+      
     })
   } catch(err) {
     console.log(err)
