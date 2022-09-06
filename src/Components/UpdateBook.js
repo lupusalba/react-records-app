@@ -3,56 +3,102 @@ import Axios from 'axios'
 
 
 
-const UpdateBook = (oldBookData) => {
+const UpdateBook = (bookID) => {
 
-  const [oldBook, setOldBook] = useState({oldBookData})
+  const [oldBook, setOldBook] = useState({})
+  const [modifiedBook, setModifiedBook] = useState({})
 
-  console.log(oldBookData)
-  console.log(oldBook)
+  console.log(bookID.bookID)
+  useEffect(() => {
+    Axios.get(`http://localhost:8080/book/${bookID.bookID}`).then((res) => {
+      setOldBook(res.data.data.oneBook)
+      console.log(oldBook)
+    })
+  }, [])
+
+
+useEffect(() => {
+  setModifiedBook(oldBook)
+  console.log(modifiedBook)
+}, [oldBook])
 
 
 
 
-  const updateOldBook = () => {
-    Axios.patch("http://localhost:8080/update-book", {
-      title: oldBook.title,
-      author: oldBook.author,
-      description: oldBook.description,
-      status: oldBook.status,
-      heroImage: oldBook.heroImage,
-      lastUpdated: oldBook.lastUpdated,
-      alternativeNames: oldBook.alternativeNames,
-      tags: oldBook.tags,
-      category: oldBook.category,
-      chapters: oldBook.chapters,
-      volumes: oldBook.volumes,
-      links: oldBook.links
+  const updateOldBook = (id) => {
+    //let id = bookID.bookID
+    Axios.patch(`"http://localhost:8080/update-book`, {
+      // title: modifiedBook.title,
+      // author: modifiedBook.author,
+      // description: modifiedBook.description,
+      // status: modifiedBook.status,
+      // heroImage: modifiedBook.heroImage,
+      // lastUpdated: modifiedBook.lastUpdated,
+      // alternativeNames: modifiedBook.alternativeNames,
+      // tags: modifiedBook.tags,
+      // category: modifiedBook.category,
+      // chapters: modifiedBook.chapters,
+      // volumes: modifiedBook.volumes,
+      // links: modifiedBook.links
+      id,
+      modifiedBook
     }).then(response => {
       console.log("succes")
     })
   }
 
+
+
   const handelChange = (e) => {
     e.preventDefault()
     const { name, value } = e.target
 
-    setOldBook(prevBook => ({
+    setModifiedBook(prevBook => ({
       ...prevBook,
       [name]: value
     }))
-    console.log(oldBook)
   }
 
 
+  console.log(oldBook.author)
   return (
     <div className="newBook">
+          <div className="bookDetailsData">
+        <div className="bookDetailsDescription">
+          <span className="bigBold">Description</span>
+          <p>{modifiedBook.description}</p>
+        </div>
+
+        <div className="bookDetailsPartsContainer">
+          <div className="bookDetailsParts">
+            <span className="bold">
+              {modifiedBook.volumes === 0 ? "Chapters" : "Parts / Volumes"}
+            </span>
+            <p>{modifiedBook.volumes === 0 ? modifiedBook.chapters : modifiedBook.volumes}</p>
+          </div>
+          <div className="bookDetailsLastUpdate">
+            <span className="bold">Last Update</span>
+            <p>{modifiedBook.lastUpdate}</p>
+          </div>
+        </div>
+
+        <div id="bookAuthor">
+          <span className="bold">Author</span>
+          <p>{modifiedBook.author}</p>
+        </div>
+
+
+
+
+
+      </div>
       <form onSubmit={updateOldBook}>
 
         <label htmlFor="title">Title</label>
         <input
           type="text"
           name="title"
-          value={oldBook.title}
+          // value={modifiedBook.title}
           onChange={handelChange}
         />
 
@@ -60,7 +106,7 @@ const UpdateBook = (oldBookData) => {
         <input
           type="text"
           name="author"
-          value={oldBook.author}
+          //value={modifiedBook.author}
           onChange={handelChange}
         />
 
@@ -68,7 +114,7 @@ const UpdateBook = (oldBookData) => {
         <input
           type="text"
           name="description"
-          value={oldBook.description}
+          //value={modifiedBook.description}
           onChange={handelChange}
         />
 
@@ -76,56 +122,56 @@ const UpdateBook = (oldBookData) => {
         <input
           type="text"
           name="status"
-          value={oldBook.status}
+          //value={modifiedBook.status}
           onChange={handelChange}
         />
         <label htmlFor="heroImage">heroImage</label>
         <input
           type="text"
           name="heroImage"
-          value={oldBook.heroImage}
+          //value={modifiedBook.heroImage}
           onChange={handelChange}
         />
         <label htmlFor="lastUpdated">lastUpdated</label>
         <input
           type="date"
           name="lastUpdated"
-          value={oldBook.lastUpdated}
+          //value={modifiedBook.lastUpdated}
           onChange={handelChange}
         />
         <label htmlFor="alternativeNames">alternativeNames</label>
         <input
           type="text"
           name="alternativeNames"
-          value={oldBook.alternativeNames}
+          //value={modifiedBook.alternativeNames}
           onChange={handelChange}
         />
         <label htmlFor="tags">tags</label>
         <input
           type="text"
           name="tags"
-          value={oldBook.tags}
+          //value={modifiedBook.tags}
           onChange={handelChange}
         />
         <label htmlFor="category">category</label>
         <input
           type="text"
           name="category"
-          value={oldBook.category}
+          //value={modifiedBook.category}
           onChange={handelChange}
         />
         <label htmlFor="chapters">chapters</label>
         <input
           type="text"
           name="chapters"
-          value={oldBook.chapters}
+          //value={modifiedBook.chapters}
           onChange={handelChange}
         />
         <label htmlFor="volumes">volumes</label>
         <input
           type="text"
           name="volumes"
-          value={oldBook.volumes}
+          //value={modifiedBook.volumes}
           onChange={handelChange}
         />
 
@@ -133,13 +179,13 @@ const UpdateBook = (oldBookData) => {
         <input
           type="text"
           name="links"
-          value={oldBook.links}
+          //value={modifiedBook.links}
           onChange={handelChange}
         />
 
 
 
-        <button onClick={updateOldBook}>Save Changes</button>
+        <button onClick={()=> {updateOldBook(bookID.bookID)}}>Save Changes</button>
       </form>
     </div>
   )

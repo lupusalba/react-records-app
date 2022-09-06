@@ -7,25 +7,23 @@ const UpdateBookPage = () => {
 
 
   const { _id } = useParams();
-  const [bookToUpdate, setBookToUpdate] = useState({});
+//   const [bookToUpdate, setBookToUpdate] = useState({});
 
-  useEffect(() => {
-    Axios.get(`http://localhost:8080/book/${_id}`).then((res) => {
-      setBookToUpdate(res.data.data.oneBook)
-      console.log(bookToUpdate)
-    })
-  }, [])
+//   useEffect(() => {
+//     Axios.get(`http://localhost:8080/book/${_id}`).then((res) => {
+//       setBookToUpdate(res.data.data.oneBook)
+//       //console.log(bookToUpdate)
+//     })
+//   }, [])
 
-let t = bookToUpdate
+// useEffect(() => {
+//   console.log(bookToUpdate)
+// }, [bookToUpdate])
 
   return (
     <div>
       {
-        t.map((t) => {
-          return (
-            <p key={t}>{t}</p>
-          )
-        })
+        <UpdateBook bookID={_id} />
       }
     </div>
   )
