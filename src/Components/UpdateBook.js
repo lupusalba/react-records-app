@@ -33,12 +33,12 @@ const UpdateBook = (bookID) => {
 
 
 
-useEffect(() => {
-  const updateOldBook = async (e) => {
+  const updateOldBook = async(e) => {
     let _id = bookID.bookID
-    await Axios.patch(`http://localhost:8080/update-book/${_id}`, oldBook)
+    let z = await Axios.patch(`http://localhost:8080/update-book/${_id}`, oldBook)
+    console.log(z)
   }
-},[on])
+
 
 
 
@@ -58,7 +58,7 @@ useEffect(() => {
   return (
     <div className="newBook">
 
-      <form onSubmit={() => { setOn(!on) }}>
+      <form onSubmit={() => {updateOldBook(oldBook._id)}}>
 
         <label htmlFor="title">Title</label>
         <input
@@ -164,7 +164,7 @@ useEffect(() => {
 
 
 
-        <button>Save Changes</button>
+        <button onClick={() => { setOn(!on) }}>Save Changes</button>
       </form>
     </div>
   )
