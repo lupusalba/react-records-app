@@ -1,3 +1,0 @@
-db 
-user:admin
-password: 2khpm57pTE6y2Rg
